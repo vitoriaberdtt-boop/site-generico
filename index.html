@@ -19,7 +19,24 @@
         <a href="#contato">Contato</a>
       </nav>
 
-      <a href="#produtos" class="btn">Peça Agora</a>
+      <div class="header-right">
+        <a href="#produtos" class="btn">Peça Agora</a>
+
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+       <nav class="menu-mobile">
+        <a href="#" onclick="closeMenu()">Início</a>
+        <a href="#produtos" onclick="closeMenu()">Produtos</a>
+        <a href="#sobre" onclick="closeMenu()">Sobre</a>
+        <a href="#contato" onclick="closeMenu()">Contato</a>
+        <a href="#produtos" class="btn" onclick="closeMenu()">Peça Agora</a>
+      </nav>
+
     </header>
 
     <section id="home" class="inicione">
@@ -218,13 +235,25 @@
     </footer>
 
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menuMobile = document.querySelector('.menu-mobile');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menuMobile = document.querySelector('.menu-mobile');
 
-        menuToggle.addEventListener('click', () => {
-            menuMobile.classList.toggle('active');
-        });
+      menuToggle.addEventListener('click', () => {
+        menuMobile.classList.toggle('active');
+        menuToggle.classList.toggle('open');
+      });
 
+      document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !menuMobile.contains(e.target)) {
+          menuMobile.classList.remove('active');
+          menuToggle.classList.remove('open');
+        }
+      });
+
+      function closeMenu() {
+        menuMobile.classList.remove('active');
+        menuToggle.classList.remove('open');
+      }
     </script>
   </body>
   </body>
